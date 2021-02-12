@@ -17,7 +17,7 @@ echo <<< __HTML__
     <<< __HTML__
     </html>
   __HTML__;
-
+  
 function printTitle() {
   echo <<< __HTML__
   <title>Title</title>
