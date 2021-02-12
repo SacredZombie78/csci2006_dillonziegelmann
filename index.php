@@ -32,7 +32,7 @@ function printBody() {
         <header>
             <nav class="user">
                 <ul>
-                    <li><a href="http://localhost/Github/Feature.php?pg=account">My Account</a></li>
+                    <li><a href="http://localhost/Github/index.php?pg=account">My Account</a></li>
                     <li><a href="#">Wish List</a></li>
                     <li><a href="#">Shopping Cart</a></li>
                 </ul>
@@ -153,7 +153,7 @@ function accountDetails() {
       <header>
           <nav class="user">
               <ul>
-                  <li><a href="#">My Account</a></li>
+                  <li><a href="http://localhost/Github/index.php?pg=account">My Account</a></li>
                   <li><a href="#">Wish List</a></li>
                   <li><a href="#">Shopping Cart</a></li>
               </ul>
@@ -169,7 +169,7 @@ function accountDetails() {
           </nav>
       </header>
       <main>
-          <form action="Feature.php" method="POST">
+          <form action="index.php" method="POST">
             <p><label>Username: </label><input type="text" name="username" value="{$_POST['username']}" /></p>
             <p><label>Password: </label><input type="text" name="password" value="{$_POST['password']}" /></p>
             <p><label>Address Line 1: </label><input type="text" name="address1" value="{$_POST['address1']}" /></p>
