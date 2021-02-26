@@ -1,23 +1,35 @@
 <?php
+// include 'database.php';
+// include 'artwork.php';
+// include 'artist.php';
  if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['address1']) && isset($_POST['address2']) && isset($_POST['city']) && isset($_POST['state']) && isset($_POST['zip'])){
    $_GET['pg'] = 'account';
  }
+ // switch ($_GET['pg']) {
+ //   case 'account':
+ //     Artist.getHtml();
+ //     break;
+ //
+ //   default:
+ //     Artwork.getHtml();
+ //     break;
+ // }
 echo <<< __HTML__
     <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   __HTML__.
-        printTitle().
+  printTitle();
   <<< __HTML__
         <link rel="stylesheet" href="aux/default.css">
     </head>
   __HTML__.
-    printBody(false).
+  printBody();
     <<< __HTML__
     </html>
   __HTML__;
-  
+
 function printTitle() {
   echo <<< __HTML__
   <title>Title</title>
@@ -40,8 +52,8 @@ function printBody() {
             <h1>Art Store</h1>
             <nav>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="http://localhost/Github/home.php">Home</a></li>
+                    <li><a href="http://localhost/Github/aboutUs.php">About Us</a></li>
                     <li><a href="#">Art Works</a></li>
                     <li><a href="#">Artists</a></li>
                 </ul>
