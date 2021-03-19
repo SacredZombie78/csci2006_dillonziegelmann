@@ -2,6 +2,7 @@
 // include 'database.php';
 // include 'artwork.php';
 // include 'artist.php';
+require("util.php");
  if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['address1']) && isset($_POST['address2']) && isset($_POST['city']) && isset($_POST['state']) && isset($_POST['zip'])){
    $_GET['pg'] = 'account';
  }
