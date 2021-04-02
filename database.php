@@ -2,7 +2,7 @@
  abstract class Database{
    private $id;
    private $haschange;
-   abstract public function get($id)
+   abstract public function get($id);
    abstract public function update($array);
    abstract public function saveData($save);
    abstract public function deleteData();

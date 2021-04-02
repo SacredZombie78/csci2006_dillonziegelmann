@@ -1,19 +1,68 @@
 <?php
  class Artwork extends Database{
-   public function get($id){
 
+   private $variable1;
+
+   public static function getAllArtwork(){
+     $pdo = Connect();
+     $sql = "SELECT artwork_id, artwork_name FROM artwork";
+   
+     $result = $pdo->query($sql);
+
+     $artworkArray = [];
+
+     while ($row = $result->fetch()){
+       $artworkArray[$row['artwork_id']] = $row['artwork_fullName'];
+     }
+     return $artworkArray;
+   }
+
+   public function get($id){
+     $pdo = Connect();
+     $sql = "SELECT * FROM artwork WHERE artwork_id = $id";
+
+     $result = $pdo->query($sql);
+
+     while ($row = $result->fetch()){
+       return $row;
+     }
+   }
+
+   public function getArtworkArtist(){
+     return $this->variable1['artwork_artist'];
+   }
+
+   public function getArtworkName(){
+     return $this->variable1['artwork_name'];
+   }
+
+   public function getArtworkReprintPrice(){
+     return $this->variable1['artwork_reprintPrice'];
+   }
+
+   public function getArtworkDesc(){
+     return $this->variable1['artwork_desc'];
    }
 
    public function update($array){
+     $pdo = Connect();
+     $sql = "UPDATE artwork SET WHERE artwork_id = $id";
 
+     $result = $pdo->query($sql);
    }
 
    public function saveData($save){
+     $pdo = Connect();
+     $sql = "PHP to be type here";
 
+     $result = $pdo->query($sql);
    }
 
    public function deleteData(){
+     $pdo = Connect();
+     $sql = "DELETE FROM artwork WHERE artwork_id = $id";
 
+     $result = $pdo->query($sql);
    }
 
    public function getHtml(){
@@ -37,107 +86,29 @@
                <h1>Art Store</h1>
                <nav>
                    <ul>
-                       <li><a href="#">Home</a></li>
-                       <li><a href="#">About Us</a></li>
-                       <li><a href="#">Art Works</a></li>
-                       <li><a href="#">Artists</a></li>
+                   <li><a href="http://localhost/Github/home.php">Home</a></li>
+                   <li><a href="http://localhost/Github/aboutUs.php">About Us</a></li>
+                   <li><a href="http://localhost/Github/index.php?pg=artwork">Art Works</a></li>
+                   <li><a href="http://localhost/Github/index.php?pg=artist">Artists</a></li>
                    </ul>
                </nav>
            </header>
            <main>
-               <article class="artwork">
-                   <h2 class="art_title">Self-portrait in a Straw Hat</h2>
-                   <p class="artist">By <a href="#">Louise Elisabeth Lebrun</a></p>
-                   <figure><img src="artwork/medium/13.jpg" alt="Self-portrait in a Straw Hat" title="Self-portrait in a Straw Hat">
-                       <figcaption>
-                           <p>The painting appears, after cleaning, to be an autograph replica of a picture, the original of which was painted in Brussels in 1782 in free imitation of Rubens’s ’Chapeau de Paille’, which LeBrun had seen in Antwerp. It was
-                               exhibited in Paris in 1782 at the Salon de la Correspondance. LeBrun’s original is recorded in a private collection in France.</p>
-                           <p class="list_price">$700</p>
-                           <div class="actions"><a href="#">Add to Wish List</a><a href="#">Add to Shopping Cart</a></div>
-                           <table class="artwork_info">
-                               <caption>Product Details</caption>
-                               <tbody>
-                                   <tr>
-                                       <td class="facet">Date:</td>
-                                       <td class="value">1782</td>
-                                   </tr>
-                                   <tr>
-                                       <td class="facet">Medium:</td>
-                                       <td class="value">Oil on canvas</td>
-                                   </tr>
-                                   <tr>
-                                       <td class="facet">Dimension:</td>
-                                       <td class="value">98cm x 71cm</td>
-                                   </tr>
-                                   <tr>
-                                       <td class="facet">Home:</td>
-                                       <td class="value"><a href="#">National Gallery, London</a></td>
-                                   </tr>
-                                   <tr>
-                                       <td class="facet">Genres:</td>
-                                       <td class="value"><a href="#">Realism</a>, <a href="#">Rococo</a></td>
-                                   </tr>
-                                   <tr>
-                                       <td class="facet">Subjects:</td>
-                                       <td class="value"><a href="#">People</a>, <a href="#">Arts</a></td>
-                                   </tr>
-                               </tbody>
-                           </table>
-                       </figcaption>
-                   </figure>
-               </article>
-               <h2>Similar Artwork</h2>
-               <article class="related">
-                   <div class="relatedArt">
-                       <figure><img src="artwork/small/293.jpg" alt="Still Life with Flowers in a Glass Vase" title="Still Life with Flowers in a Glass Vase">
-                           <figcaption>
-                               <p><a href="#293">Still Life with Flowers in a Glass Vase</a></p>
-                           </figcaption>
-                       </figure>
-                       <div class="actions"><a href="#">View</a><a href="#">Wish</a><a href="#">Cart</a></div>
-                   </div>
-                   <div class="relatedArt">
-                       <figure><img src="artwork/small/183.jpg" alt="Portrait of Alida Christina Assink" title="Portrait of Alida Christina Assink">
-                           <figcaption>
-                               <p><a href="#183">Portrait of Alida Christina Assink</a></p>
-                           </figcaption>
-                       </figure>
-                       <div class="actions"><a href="#">View</a><a href="#">Wish</a><a href="#">Cart</a></div>
-                   </div>
-                   <div class="relatedArt">
-                       <figure><img src="artwork/small/820.jpg" alt="Self-portrait" title="Self-portrait">
-                           <figcaption>
-                               <p><a href="#820">Self-portrait</a></p>
-                           </figcaption>
-                       </figure>
-                       <div class="actions"><a href="#">View</a><a href="#">Wish</a><a href="#">Cart</a></div>
-                   </div>
-                   <div class="relatedArt">
-                       <figure><img src="artwork/small/374.jpg" alt="William II, Prince of Orange, and his Bride, Mary Stuart" title="William II, Prince of Orange, and his Bride, Mary Stuart">
-                           <figcaption>
-                               <p><a href="#374">William II, Prince of Orange, and his Bride, Mary Stuart</a></p>
-                           </figcaption>
-                       </figure>
-                       <div class="actions"><a href="#">View</a><a href="#">Wish</a><a href="#">Cart</a></div>
-                   </div>
-                   <div class="relatedArt">
-                       <figure><img src="artwork/small/849.jpg" alt="Milkmaid" title="Milkmaid">
-                           <figcaption>
-                               <p><a href="#849">Milkmaid</a></p>
-                           </figcaption>
-                       </figure>
-                       <div class="actions"><a href="#">View</a><a href="#">Wish</a><a href="#">Cart</a></div>
-                   </div>
-               </article>
+               <h2>getArtworkName();</h2>
+               <p><a href="http://localhost/Github/index.php?pg=artist&id=$id">Artist</a></p>
+               <p>ReprintPrice: getArtworkReprintPrice();</P>
+               <p>Description: getArtworkDesc();</p>
            </main>
-           <footer>
-               <p>All images are copyright to their owners. This is just a hypothetical site ©2020 Copyright Art Store</p>
-           </footer>
-
        </body>
          </html>
        __HTML__;
 
    }
+
+   function __construct($id){
+     parent::__construct($id);
+     $this->variable1 = $this->get($id);
+   }
+
  }
 ?>
