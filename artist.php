@@ -1,19 +1,80 @@
 <?php
  class Artist extends Database{
-   public function get($id){
 
+   private $variable1;
+
+   public static function getAllArtists(){
+     $pdo = Connect();
+     $sql = "SELECT artist_id, artist_fullName FROM artist";
+
+     $result = $pdo->query($sql);
+
+     $artistArray = [];
+
+     while ($row = $result->fetch()){
+       $artistArray[$row['artist_id']] = $row['artist_fullName'];
+     }
+     return $artistArray;
+   }
+
+   public function get($id){
+     $pdo = Connect();
+     $sql = "SELECT * FROM artist WHERE artist_id = $id";
+
+     $result = $pdo->query($sql);
+
+     while ($row = $result->fetch()){
+       return $row;
+     }
+   }
+
+   public function getArtistName(){
+     return $this->variable1['artist_fullName'];
+   }
+
+   public function getArtistLastName(){
+     return $this->variable1['artist_lastName'];
+   }
+
+   public function getArtistBirthdate(){
+     return $this->variable1['artist_born'];
+   }
+
+   public function getArtistDeathdate(){
+     return $this->variable1['artist_died'];
+   }
+
+   public function getArtistOrigin(){
+     return $this->variable1['artist_origin'];
+   }
+
+   public function getArtistInfluence(){
+     return $this->variable1['artist_influence'];
+   }
+
+   public function getArtistDesc(){
+     return $this->variable1['artist_desc'];
    }
 
    public function update($array){
+     $pdo = Connect();
+     $sql = "UPDATE artist SET WHERE artist_id = $id";
 
+     $result = $pdo->query($sql);
    }
 
    public function saveData($save){
+     $pdo = Connect();
+     $sql = "INSERT INTO";
 
+     $result = $pdo->query($sql);
    }
 
    public function deleteData(){
+     $pdo = Connect();
+     $sql = "DELETE FROM artist WHERE artist_id = $id";
 
+     $result = $pdo->query($sql);
    }
 
    public function getHtml(){
@@ -37,29 +98,31 @@
                  <h1>Art Store</h1>
                  <nav>
                      <ul>
-                         <li><a href="#">Home</a></li>
-                         <li><a href="#">About Us</a></li>
-                         <li><a href="#">Art Works</a></li>
-                         <li><a href="#">Artists</a></li>
+                     <li><a href="http://localhost/Github/home.php">Home</a></li>
+                     <li><a href="http://localhost/Github/aboutUs.php">About Us</a></li>
+                     <li><a href="http://localhost/Github/index.php?pg=artwork">Art Works</a></li>
+                     <li><a href="http://localhost/Github/index.php?pg=artist">Artists</a></li>
                      </ul>
                  </nav>
              </header>
              <main>
-                 <form action="index.php" method="POST">
-                   <p><label>Username: </label><input type="text" name="username" value="{$_POST['username']}" /></p>
-                   <p><label>Password: </label><input type="text" name="password" value="{$_POST['password']}" /></p>
-                   <p><label>Address Line 1: </label><input type="text" name="address1" value="{$_POST['address1']}" /></p>
-                   <p><label>Address Line 2: </label><input type="text" name="address2" value="{$_POST['address2']}" /></p>
-                   <p><label>City: </label><input type="text" name="city" value="{$_POST['city']}" /></p>
-                   <p><label>State: </label><input type="text" name="state" value="{$_POST['state']}" /></p>
-                   <p><label>Zipcode: </label><input type="text" name="zip" value="{$_POST['zip']}" /></p>
-                   <input type="submit" value="Save Changes" />
-                 </form>
+                 <h2>getArtistName();</h2>
+                 <p>Artist Lastname: getArtistLastName();</p>
+                 <p>Artist Birthdate: getArtistBirthdate();</p>
+                 <p>Artist Deathdate: getArtistDeathdate();</p>
+                 <p>Artist Origin:  getArtistOrigin();</p>
+                 <p>Artist Influence: getArtistInfluence();</p>
+                 <p>Artist Description: getArtistDesc();</p>
              </main>
-
          </body>
          </html>
        __HTML__;
 
  }
+
+ function __construct($id){
+   parent::__construct($id);
+   $this->variable1 = $this->get($id);
+ }
+}
 ?>

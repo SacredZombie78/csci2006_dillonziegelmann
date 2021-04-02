@@ -1,20 +1,9 @@
 <?php
-// include 'database.php';
-// include 'artwork.php';
-// include 'artist.php';
+error_reporting(E_ALL);
+ include 'database.php';
+ include 'artwork.php';
+ include 'artist.php';
 require("util.php");
- if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['address1']) && isset($_POST['address2']) && isset($_POST['city']) && isset($_POST['state']) && isset($_POST['zip'])){
-   $_GET['pg'] = 'account';
- }
- // switch ($_GET['pg']) {
- //   case 'account':
- //     Artist.getHtml();
- //     break;
- //
- //   default:
- //     Artwork.getHtml();
- //     break;
- // }
 echo <<< __HTML__
     <!DOCTYPE html>
     <html lang="en">
@@ -22,6 +11,7 @@ echo <<< __HTML__
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   __HTML__.
   printTitle();
+
   <<< __HTML__
         <link rel="stylesheet" href="aux/default.css">
     </head>
@@ -39,6 +29,37 @@ function printTitle() {
 
 function printBody() {
   switch ($_GET['pg']) {
+
+    case 'artwork':
+    if(isset($_GET['id'])){
+      $artwork = new Artwork($_GET['id']);
+      echo $artwork->getHtml();
+    }
+    else{
+      $artworkList = Artwork::getAllArtwork();
+      foreach($artworkList as $id => $name){
+        echo <<< __HTML__
+        <li><a href="?pg=artwork&id=$id">$name</a></li>
+        __HTML__;
+      }
+    }
+    break;
+
+    case 'artist':
+    if(isset($_GET['id'])){
+      $artist = new Artist($_GET['id']);
+      echo $artist->getHtml();
+    }
+    else{
+      $artistList = Artist::getAllArtists();
+      foreach($artistList as $id => $name){
+        echo <<< __HTML__
+        <li><a href="?pg=artist&id=$id">$name</a></li>
+        __HTML__;
+      }
+    }
+    break;
+
     default:
     echo <<< __HTML__
     <body>
@@ -55,15 +76,15 @@ function printBody() {
                 <ul>
                     <li><a href="http://localhost/Github/home.php">Home</a></li>
                     <li><a href="http://localhost/Github/aboutUs.php">About Us</a></li>
-                    <li><a href="#">Art Works</a></li>
-                    <li><a href="#">Artists</a></li>
+                    <li><a href="http://localhost/Github/index.php?pg=artwork">Art Works</a></li>
+                    <li><a href="http://localhost/Github/index.php?pg=artist">Artists</a></li>
                 </ul>
             </nav>
         </header>
         <main>
             <article class="artwork">
                 <h2 class="art_title">Self-portrait in a Straw Hat</h2>
-                <p class="artist">By <a href="#">Louise Elisabeth Lebrun</a></p>
+                <p class="artist">By <a href="#">Louise Elisabeth Lebrun</a></p>uo
                 <figure><img src="artwork/medium/13.jpg" alt="Self-portrait in a Straw Hat" title="Self-portrait in a Straw Hat">
                     <figcaption>
                         <p>The painting appears, after cleaning, to be an autograph replica of a picture, the original of which was painted in Brussels in 1782 in free imitation of Rubens’s ’Chapeau de Paille’, which LeBrun had seen in Antwerp. It was
