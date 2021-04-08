@@ -58,7 +58,8 @@
 
    public function update($array){
      $pdo = Connect();
-     $sql = "UPDATE artist SET WHERE artist_id = $id";
+     $sql = "UPDATE artist SET artist_fullName = {$this->variable1}, artist_lastName = {$this->variables1}, artist_born = {$this->variables1}, artist_died = {$this->variables1},
+      artist_origin = {$this->variable1}, artist_influence = {$this->variables1}, artist_desc = {$this->variable1} WHERE artist_id = $id";
 
      $result = $pdo->query($sql);
    }
@@ -78,6 +79,15 @@
    }
 
    public function getHtml(){
+
+     $fullName = $this->getArtistName();
+     $lastName = $this->getArtistLastName();
+     $born = $this->getArtistBirthdate();
+     $dead = $this->getArtistDeathdate();
+     $origin = $this->getArtistOrigin();
+     $influence = $this->getArtistInfluence();
+     $desc = $$this->getArtistDesc();
+
      echo <<< __HTML__
          <!DOCTYPE html>
          <html lang="en">
@@ -106,13 +116,13 @@
                  </nav>
              </header>
              <main>
-                 <h2>getArtistName();</h2>
-                 <p>Artist Lastname: getArtistLastName();</p>
-                 <p>Artist Birthdate: getArtistBirthdate();</p>
-                 <p>Artist Deathdate: getArtistDeathdate();</p>
-                 <p>Artist Origin:  getArtistOrigin();</p>
-                 <p>Artist Influence: getArtistInfluence();</p>
-                 <p>Artist Description: getArtistDesc();</p>
+                 <h2>$fullName</h2>
+                 <p>Artist Lastname: $lastName</p>
+                 <p>Artist Birthdate: $born</p>
+                 <p>Artist Deathdate: $dead</p>
+                 <p>Artist Origin:  $origin</p>
+                 <p>Artist Influence: $influence</p>
+                 <p>Artist Description: $desc</p>
              </main>
          </body>
          </html>

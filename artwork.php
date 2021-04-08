@@ -6,13 +6,13 @@
    public static function getAllArtwork(){
      $pdo = Connect();
      $sql = "SELECT artwork_id, artwork_name FROM artwork";
-   
+
      $result = $pdo->query($sql);
 
      $artworkArray = [];
 
      while ($row = $result->fetch()){
-       $artworkArray[$row['artwork_id']] = $row['artwork_fullName'];
+       $artworkArray[$row['artwork_id']] = $row['artwork_name'];
      }
      return $artworkArray;
    }
@@ -46,7 +46,7 @@
 
    public function update($array){
      $pdo = Connect();
-     $sql = "UPDATE artwork SET WHERE artwork_id = $id";
+     $sql = "UPDATE artwork SET artwork_artist = {$this->variable1}, artwork_name = {$this->variable1}, artwork_reprintPrice = {$this->variable1}, artwork_desc = {$this->variable1} WHERE artwork_id = $id";
 
      $result = $pdo->query($sql);
    }
@@ -66,6 +66,12 @@
    }
 
    public function getHtml(){
+
+     $name = $this->getArtworkName();
+     $artist = $this->getArtworkArtist();
+     $price = $this->getArtworkReprintPrice();
+     $desc = $this->getArtworkDesc();
+
      echo <<< __HTML__
          <!DOCTYPE html>
          <html lang="en">
@@ -94,10 +100,10 @@
                </nav>
            </header>
            <main>
-               <h2>getArtworkName();</h2>
-               <p><a href="http://localhost/Github/index.php?pg=artist&id=$id">Artist</a></p>
-               <p>ReprintPrice: getArtworkReprintPrice();</P>
-               <p>Description: getArtworkDesc();</p>
+               <h2>$name</h2>
+               <p><a href="http://localhost/Github/index.php?pg=artist&id=$artist">Artist</a></p>
+               <p>ReprintPrice: $price</P>
+               <p>Description: $desc</p>
            </main>
        </body>
          </html>
